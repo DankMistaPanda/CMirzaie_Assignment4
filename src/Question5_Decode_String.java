@@ -1,3 +1,5 @@
+import java.util.Stack;
+
 /*
 5 (code) Decode String [25 points]
 Given an encoded string, return its decoded string.
@@ -22,4 +24,40 @@ Constraints:
 • All the integers in s are in the range [1, 300].
  */
 public class Question5_Decode_String {
+    public static String decodeString(String s){
+        Stack<String> stack = new Stack<>();
+        boolean open = false;
+        String output = "";
+        String temp = "";
+        int count = 0;
+        for(int i = 0; i< s.length(); i++){
+            if(Character.isDigit(s.charAt(i))){
+                count = Integer.parseInt((String.valueOf(s.charAt(i))));
+                i++;
+            }
+            if(s.charAt(i) == '['){
+                open = true;
+                i++;
+            } else if (s.charAt(i) == ']'){
+                open = false;
+                while(count > 0){
+                    output += temp;
+                    count--;
+                }
+                i++;
+            }
+            if(open){
+                temp += String.valueOf(s.charAt(i));
+            }
+            if(!open){
+                output += String.valueOf(s.charAt(i));
+            }
+        }
+        return output;
+    }
+    public static void main(String[] args){
+        System.out.println(decodeString("3[a]2[bc]"));
+        System.out.println(decodeString("3[a2[c]]"));
+        System.out.println(decodeString("2[abc]3[cd]ef"));
+    }
 }
