@@ -57,8 +57,20 @@ public class Question5_Decode_String {
         return output;
     }
     public static void main(String[] args){
-        System.out.println(decodeString("3[a]2[bc]"));
-        System.out.println(decodeString("3[a2[c]]"));
-        System.out.println(decodeString("2[abc]3[cd]ef"));
+        System.out.println("Example 1: \n" +
+                        "Input: 3[a]2[bc]\n" +
+                        "Output: " +
+                decodeString("3[a]2[bc]") +
+                "\nCorrect Output: aaabcbc");
+        System.out.println("Example 2: \n" +
+                        "Input: 3[a2[c]]\n" +
+                        "Output: " +
+                decodeString("3[a2[c]]") +
+                "\nCorrect Output: accaccacc");
+        System.out.println("Example 3: \n" +
+                        "Input: 2[abc]3[cd]ef\n" +
+                        "Output: " +
+                decodeString("2[abc]3[cd]ef") +
+                "\nCorrect Output: abcabccdcdcdef");
     }
 }
