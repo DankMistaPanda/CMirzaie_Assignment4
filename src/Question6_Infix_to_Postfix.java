@@ -19,5 +19,62 @@ a+b*(c^d-e)^(f+g*h)-i
 Sample Output
 abcd^e-fgh*+^*+i-
  */
+import java.util.Stack;
 public class Question6_Infix_to_Postfix {
+    public static String postfix(String s){
+        Stack<String> stack = new Stack<>();
+        String output = "";
+        String current;
+
+        for(int i = 0; i < s.length(); i++){
+            current = s.substring(i, i+1);
+            if(current.equals("(")){
+                stack.push(current);
+            } else if(current.equals(")")){
+                while(!stack.peek().equals("(")){
+                    output += stack.pop();
+                }
+                stack.pop();
+            } else if(check(current) == 0){
+                output += current;
+            } else if(stack.empty()){
+                stack.push(current);
+            } else{
+                while(!stack.empty() && !stack.peek().equals("(") && check(current) <= check(stack.peek())){
+                    output += stack.pop();
+                }
+                stack.push(current);
+            }
+            if(i == s.length()-1){
+                while(!stack.empty()){
+                    output += stack.pop();
+                }
+            }
+        }
+
+        return output;
+    }
+
+    public static int check(String s){
+        switch (s){
+            case "^":
+                return 1;
+            case "*":
+                return 2;
+            case "/":
+                return 2;
+            case "+":
+                return 3;
+            case "-":
+                return 3;
+            default:
+                return 0;
+        }
+    }
+
+    public static void main(String[] args){
+        System.out.println("a+b*(c^d-e)^(f+g*h)-i" + "\tInput");
+        System.out.println(postfix("a+b*(c^d-e)^(f+g*h)-i") + "\t\tOutput");
+        System.out.println("abcd^e-fgh*+^*+i-" + "\t\tCheck Output");
+    }
 }
