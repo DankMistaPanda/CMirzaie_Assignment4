@@ -1,0 +1,60 @@
+1 (text) Stacking [10 points] Given an empty stack, what will be the contents of the stack after the
+following operations? (Hint: When you have a method inside another method call (e.g., this(that()), that()
+will be executed first, afterwards this() will be executed)
+• push(1)
+	[1]
+• push(20)
+	[20,1]
+• pop()
+	[1]
+• push(pop()*2)
+	[2]
+• push(0)
+	[0,2]
+• push(pop()/2)
+	[0,2]
+	
+2 (text) Queueing [10 points] Given an empty queue, what will be the contents of the stack after the
+following operations? (Hint: When you have a method inside another method call (e.g., this(that()), that()
+will be executed first, afterwards this() will be executed)
+• push(2) = add(2)
+	[2]
+• push(pop()+4) = add(poll()+4)
+	[6]
+• push(5) = add(5)
+	[6,5]
+• push(pop()/2) = add(poll()/2)
+	[5,3]
+• pop() = poll()
+	[3]
+• pop() = poll()
+	[]
+	
+7 (text) Algorithm Analysis [10 points]
+For each of the algorithms you wrote for problems 4-6, explain their time complexity and space
+complexity using Big-O notation. Explain how you arrived at your answer.
+
+•Problem 4:
+	•Time Complexity:
+		•The time complexity is O(n) where n = s.length() because the first loop runs n times and the second loop runs n times. 
+			Thus as input size increases, program runtime increases linearly.
+			The final complexity is calculated as O(n) + O(n) + O(1) = O(2n+1) = O(n)
+	•Space Complexity:
+		•The space complexity is O(n) where n = s.length() because creating the Stack of Strings named "stack" stores all characters from the input String.
+			Making it of size n because it increases as s.length() increases. The rest of the program uses constant time.
+•Problem 5:
+	•Time Complexity:
+		•The time complexity is O(n+m) where n = s.length() and m = output.length() because
+			scanning the input String, s takes O(n) time and stack pushes and pops take constant time.
+			Also, when a closed bracket "]" is reached, a for loop runs the sum of the digits within the String input.
+			This comes to a final time of m to write to the output String.
+	•Space Complexity:
+		•The space complexity is O(n+m) where n = output because copying to the Stack, "stack" takes O(n) space and the String output can grow at O(m) space.
+			Thus O(m) + O(n) = O(n+m).
+•Problem 6:
+	•Time Complexity:
+		•The time complexity is O(n) where n = s.length() because the outer for loop runs n times and the inner while loop runs less than n times.
+			The time complexity of the check method is O(1). Thus, O(n) + O(1) = O(n)
+	•Space Complexity:
+		•The space complexity is O(n) where n = s.length() because the Stack, "stack" in worst case uses O(n) memory because it stores up to O(n) operators and parenthesis.
+			The output string is at most proportional to the input array so it is also O(n).
