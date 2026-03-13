@@ -1,5 +1,3 @@
-import java.util.Stack;
-
 /*
 5 (code) Decode String [25 points]
 Given an encoded string, return its decoded string.
@@ -23,34 +21,37 @@ Constraints:
 • s is guaranteed to be a valid input.
 • All the integers in s are in the range [1, 300].
  */
+import java.util.Stack;
 public class Question5_Decode_String {
     public static String decodeString(String s){
         Stack<String> stack = new Stack<>();
-        boolean open = false;
         String output = "";
-        String temp = "";
+        String temp;
         int count = 0;
+        int repeat;
+
         for(int i = 0; i< s.length(); i++){
             if(Character.isDigit(s.charAt(i))){
-                count = Integer.parseInt((String.valueOf(s.charAt(i))));
-                i++;
-            }
-            if(s.charAt(i) == '['){
-                open = true;
-                i++;
-            } else if (s.charAt(i) == ']'){
-                open = false;
-                while(count > 0){
-                    output += temp;
-                    count--;
+                count = 0;
+                while(i< s.length() && Character.isDigit(s.charAt(i))){
+                    count = count * 10 + Integer.parseInt(String.valueOf(s.charAt(i)));
+                    i++;
                 }
-                i++;
-            }
-            if(open){
-                temp += String.valueOf(s.charAt(i));
-            }
-            if(!open){
-                output += String.valueOf(s.charAt(i));
+                i--;
+            } else if(s.charAt(i) == '['){
+                stack.push(output);
+                stack.push(String.valueOf(count));
+                output = "";
+                count = 0;
+            } else if (s.charAt(i) == ']'){
+                repeat = Integer.parseInt(stack.pop());
+                temp = "";
+                for(int j = 0; j < repeat; j++){
+                    temp += output;
+                }
+                output = stack.pop() + temp;
+            } else{
+                output += s.charAt(i);
             }
         }
         return output;
