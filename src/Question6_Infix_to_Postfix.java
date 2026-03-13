@@ -40,7 +40,7 @@ public class Question6_Infix_to_Postfix {
             } else if(stack.empty()){
                 stack.push(current);
             } else{
-                while(!stack.empty() && !stack.peek().equals("(") && check(current) <= check(stack.peek())){
+                while(!stack.empty() && !stack.peek().equals("(") && check(current) >= check(stack.peek())){
                     output += stack.pop();
                 }
                 stack.push(current);
@@ -74,7 +74,7 @@ public class Question6_Infix_to_Postfix {
 
     public static void main(String[] args){
         System.out.println("a+b*(c^d-e)^(f+g*h)-i" + "\tInput");
-        System.out.println(postfix("a+b*(c^d-e)^(f+g*h)-i") + "\t\tOutput");
-        System.out.println("abcd^e-fgh*+^*+i-" + "\t\tCheck Output");
+        System.out.println(postfix("a+b*(c^d-e)^(f+g*h)-i") + "\t\tProgram Output");
+        System.out.println("abcd^e-fgh*+^*+i-" + "\t\tCorrect Output");
     }
 }
