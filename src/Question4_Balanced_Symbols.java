@@ -109,8 +109,17 @@ public class Question4_Balanced_Symbols {
     }
 
     public static void main(String[] args){
-        System.out.println(isBalanced("{[()]}"));
-        System.out.println(isBalanced("{[(])}¿"));
-        System.out.println(isBalanced("{{[[(()<>)]]}}"));
+        System.out.println("Input:\n" +
+                "{[()]}\n" +
+                "{[(])}¿\n" +
+                "{{[[(()<>)]]}}");
+        System.out.println("Program Output:\n" +
+                isBalanced("{[()]}") + "\n" +
+                isBalanced("{[(])}¿") + "\n" +
+                isBalanced("{{[[(()<>)]]}}"));
+        System.out.println("Correct Output:\n" +
+                "YES\n" +
+                "NO\n" +
+                "YES");
     }
 }
