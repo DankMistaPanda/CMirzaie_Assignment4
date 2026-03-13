@@ -10,7 +10,6 @@ n-i
  */
 import java.util.ArrayDeque;
 import java.util.Deque;
-import java.util.Iterator;
 
 public class Question3_Find_in_Deque {
     public static void main(String[] args){
@@ -44,26 +43,32 @@ public class Question3_Find_in_Deque {
         d.addLast("z");//26
 
 
-        System.out.println(findInd(d, "a"));
-        System.out.println(findInd(d, "z"));
-        System.out.println(findInd(d, "l"));
-        System.out.println(findInd(d, "m"));
+        System.out.println(findInd(d, "a"));//1
+        System.out.println(findInd(d, "f"));//6
+        System.out.println(findInd(d, "l"));//12
+        System.out.println(findInd(d, "m"));//13
+        System.out.println(findInd(d, "s"));//19
+        System.out.println(findInd(d, "z"));//26
     }
 
     public static int findInd(Deque<String> d, String target){
+        Deque<String> deck = new ArrayDeque<>(d);
         int aCount = 1;
-        int dCount = 1;
-        int dSize = d.size();
-        while(aCount < (dSize-dCount)){
-            if(d.pollFirst() == target){
+        int dCount = 0;
+        int dSize = deck.size();
+        while(!deck.isEmpty()){
+            if(deck.pollFirst().equals(target)){
                 return aCount;
             }
-            if(d.pollLast() == target){
+            if(deck.isEmpty()){
+                break;
+            }
+            if(deck.pollLast().equals(target)){
                 return dSize-dCount;
             }
             aCount++;
             dCount++;
         }
-        return 0;
+        return -1;
     }
 }
